@@ -1,52 +1,47 @@
 @extends('layout.mainlayout')
 
 @section('content')
-<!-- Hero Section -->
-<section class="hero d-flex align-items-center text-center text-light" style="background: url('{{ asset('images/hero-bg.jpg') }}') center/cover no-repeat; height: 90vh;">
-  <div class="container" data-aos="fade-up">
-    <h1 class="fw-bold display-4">Welcome to Lambang Karya Indah</h1>
-    <p class="lead mt-3">Crafting quality woodwork since 1998</p>
+<section class="hero">
+  <div class="container">
+    <h1>Lambang Karya Indah</h1>
+    <p>Crafting quality wood products since 1998</p>
   </div>
 </section>
 
-<!-- About Section -->
-<section class="py-5" data-aos="fade-up">
-  <div class="container">
-    <h2 class="text-center fw-bold mb-4 text-success">About Us</h2>
-    <p class="text-center mx-auto" style="max-width: 700px;">
-      Lambang Karya Indah (LKI) is a wood processing company established in 1998, owned by Mr. Sutrisno. 
-      We specialize in transforming raw wood into semi-finished materials with precision and care.
+<section class="py-5 fade-up">
+  <div class="container text-center">
+    <h2 class="section-title">About Us</h2>
+    <p class="mx-auto" style="max-width: 700px;">
+      Established in 1998 by Mr. Sutrisno, Lambang Karya Indah (LKI) is a leading wood processing company
+      that specializes in creating semi-finished wood materials. Our mission is to bring the warmth and strength
+      of natural wood into every home and project.
     </p>
   </div>
 </section>
 
-<!-- Advantages -->
-<section class="py-5 bg-light" data-aos="fade-up">
+<section class="py-5 bg-light fade-up">
   <div class="container">
-    <h2 class="text-center fw-bold mb-5 text-success">Why Choose Us</h2>
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm hover-scale">
-          <div class="card-body text-center">
-            <h5 class="fw-bold mb-3">High Precision</h5>
-            <p>Every cut, every polish — done with expert precision using modern machinery.</p>
-          </div>
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="wood-grid">
+      <div class="card text-center p-3">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" class="card-img-top">
+        <div class="card-body">
+          <h5 class="fw-bold text-success">High Precision</h5>
+          <p>We process every piece with precision and attention to detail.</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm hover-scale">
-          <div class="card-body text-center">
-            <h5 class="fw-bold mb-3">Sustainable Materials</h5>
-            <p>We only use responsibly sourced wood, supporting sustainability and quality.</p>
-          </div>
+      <div class="card text-center p-3">
+        <img src="https://images.unsplash.com/photo-1616628182502-47e4ec7a0e03" class="card-img-top">
+        <div class="card-body">
+          <h5 class="fw-bold text-success">Sustainable</h5>
+          <p>All woods are responsibly sourced, ensuring a greener planet.</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm hover-scale">
-          <div class="card-body text-center">
-            <h5 class="fw-bold mb-3">Experienced Craftsmen</h5>
-            <p>Over 25 years of experience in delivering reliable, durable, and elegant woodworks.</p>
-          </div>
+      <div class="card text-center p-3">
+        <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a" class="card-img-top">
+        <div class="card-body">
+          <h5 class="fw-bold text-success">Experienced</h5>
+          <p>Over 25 years of craftsmanship and trusted by many industries.</p>
         </div>
       </div>
     </div>

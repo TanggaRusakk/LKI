@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('wood', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('origin'); 
+            $table->text('description'); 
+            $table->text('characteristics'); 
+            $table->text('uses'); 
             $table->timestamps();
         });
     }
