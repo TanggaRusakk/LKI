@@ -9,4 +9,8 @@ class Wood extends Model
 {
     /** @use HasFactory<\Database\Factories\WoodFactory> */
     use HasFactory;
+
+    private $name;
+    private $description;
+    private $image;
 }
