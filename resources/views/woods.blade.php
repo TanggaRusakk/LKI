@@ -1,22 +1,20 @@
 @extends('layout.mainlayout')
 
 @section('content')
-<div class="container py-5 fade-up">
-  <h2 class="section-title">Our Wood Collection</h2>
-  
-  <h4 class="fw-bold mb-3 text-success">Local Woods</h4>
-  <div class="wood-grid mb-5">
-    @foreach([
-      ['name'=>'Jati','price'=>'Rp 5.000.000/m³','use'=>'Furniture, Flooring','desc'=>'Strong and termite-resistant.','img'=>'https://images.unsplash.com/photo-1603190287605-e6ade32fa852'],
-      ['name'=>'Merbau','price'=>'Rp 4.800.000/m³','use'=>'Decking, Frames','desc'=>'Dense with rich reddish tones.','img'=>'https://images.unsplash.com/photo-1616628182502-47e4ec7a0e03']
-    ] as $w)
-      <div class="card">
-        <img src="{{ $w['img'] }}" alt="{{ $w['name'] }}">
-        <div class="card-body">
-          <h5 class="fw-bold text-success">{{ $w['name'] }}</h5>
-          <p>{{ $w['desc'] }}</p>
-          <p><strong>Best for:</strong> {{ $w['use'] }}</p>
-          <span class="badge bg-success">{{ $w['price'] }}</span>
+<div class="container py-5" data-aos="fade-up">
+  <h2 class="text-center text-success fw-bold mb-5">Types of Wood We Handle</h2>
+  <div class="row g-4">
+    @foreach ([
+      ['name'=>'Teak (Jati)','desc'=>'Durable and elegant wood with rich color, ideal for furniture.','img'=>'https://images.unsplash.com/photo-1565538810643-b5bdb714032a'],
+      ['name'=>'Merbau','desc'=>'Hard tropical wood known for its reddish-brown hue and high strength.','img'=>'https://images.unsplash.com/photo-1578301978693-85fa9c0320e1'],
+      ['name'=>'Pine','desc'=>'Light-colored softwood used widely for interior design and flooring.','img'=>'https://images.unsplash.com/photo-1621121813613-b6d88173d02d']
+    ] as $wood)
+    <div class="col-md-4">
+      <div class="card shadow-sm hover-scale">
+        <img src="{{ $wood['img'] }}" class="card-img-top" alt="{{ $wood['name'] }}">
+        <div class="card-body text-center">
+          <h5 class="fw-bold">{{ $wood['name'] }}</h5>
+          <p>{{ $wood['desc'] }}</p>
         </div>
       </div>
     @endforeach

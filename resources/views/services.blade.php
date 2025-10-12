@@ -18,10 +18,12 @@
         <p>Professional surface treatment for durability and aesthetics.</p>
       </div>
     </div>
-    <div class="card text-center p-3">
-      <div class="card-body">
-        <h5 class="fw-bold text-success">Kiln Drying</h5>
-        <p>Ensure wood stability with our quality drying process.</p>
+    <div class="col-md-5">
+      <div class="card shadow-sm hover-scale">
+        <div class="card-body text-center">
+          <h5 class="fw-bold mb-3">Finishing & Drying</h5>
+          <p>We provide wood finishing and drying services to maintain quality and durability.</p>
+        </div>
       </div>
     </div>
   </div>
