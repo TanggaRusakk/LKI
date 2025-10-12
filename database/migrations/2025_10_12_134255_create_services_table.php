@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->text('image')->nullable();
+            $table->decimal('custom_price_per_m3', 12, 2);
             $table->timestamps();
         });
     }

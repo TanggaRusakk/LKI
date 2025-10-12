@@ -11,6 +11,9 @@ class Wood extends Model
     use HasFactory;
 
     private $name;
+    private $origin;
     private $description;
+    private $characteristics;
+    private $uses;
     private $image;
 }
