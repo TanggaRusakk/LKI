@@ -17,40 +17,45 @@ class ServiceSeeder extends Seeder
 
         $services = [
             [
-                'name' => 'Cutting (Resize)',
-                'description' => 'Proses memotong kayu sesuai panjang yang diinginkan, memastikan setiap potong memenuhi kebutuhan produksi dengan dimensi yang presisi dan rapi untuk proses selanjutnya.',
-                'image' => null,
+                'name' => 'Cutting',
+                'description' => 'The process of cutting wood to match the desired length, ensuring each piece meets production requirements. This step guarantees precise and clean dimensions for further processing.',
+                'price' => 350000.00,
+                'image' => 'images/services/cutting.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Splitting',
-                'description' => 'Proses membelah kayu untuk menyesuaikan lebar sesuai desain atau pesanan. Menghasilkan potongan yang seragam dan proporsional untuk perakitan yang konsisten.',
-                'image' => null,
+                'description' => 'The process of splitting wood to adjust its width according to design or order specifications. It produces uniform and proportional pieces for consistent assembly.',
+                'price' => 450000.00,
+                'image' => 'images/services/splitting.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Smoothing (Molding) / Planing',
-                'description' => 'Tahap meratakan dan menghaluskan permukaan kayu serta menyesuaikan ketebalan. Planing mempersiapkan kayu untuk penyambungan atau finishing dengan tekstur yang rata dan halus.',
-                'image' => null,
+                'name' => 'Moulding',
+                'description' => 'This stage flattens and smooths the wood surface while adjusting its thickness. Planing prepares the wood for joining or finishing with an even and refined texture.',
+                'price' => 250000.00,
+                'image' => 'images/services/moulding.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
                 'name' => 'Sanding',
-                'description' => 'Proses penghalusan akhir menggunakan mesin amplas atau amplas tangan untuk menghilangkan serat kasar dan ketidaksempurnaan, menghasilkan permukaan halus siap finishing.',
-                'image' => null,
+                'description' => 'The final smoothing process using a sanding machine or sandpaper to remove rough fibers and imperfections. It results in a smooth, even surface ready for finishing.',
+                'price' => 400000.00,
+                'image' => 'images/services/sanding.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Joining (Finger Joint)',
-                'description' => 'Teknik menyambung potongan kayu menggunakan pola “finger” yang saling mengunci untuk menyesuaikan panjang atau lebar. Metode ini menciptakan sambungan yang kuat dan rapi sambil mengoptimalkan penggunaan bahan.',
-                'image' => null,
+                'name' => 'Finger Joint',
+                'description' => 'A technique used to connect wood pieces using interlocking “finger” patterns to match desired length or width. This method creates strong, neat joints while optimizing material usage.',
+                'price' => 500000.00,
+                'image' => 'images/services/finger-joint.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
+            ]
         ];
 
         DB::table('services')->insertOrIgnore($services);

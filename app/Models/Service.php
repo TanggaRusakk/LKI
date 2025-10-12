@@ -13,4 +13,5 @@ class Service extends Model
     private $name;
     private $description;
     private $image;
+    private $price;
 }
