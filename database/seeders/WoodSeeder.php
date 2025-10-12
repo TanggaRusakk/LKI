@@ -123,7 +123,6 @@ class WoodSeeder extends Seeder
             ],
             [
                 'name' => 'Cherry',
-                'scientific_name' => 'Prunus serotina',
                 'origin' => 'International',
                 'description' => 'A reddish-brown hardwood that darkens beautifully with age.',
                 'characteristics' => 'Smooth grain, medium hardness, deepens in color over time.',
@@ -134,7 +133,6 @@ class WoodSeeder extends Seeder
             ],
             [
                 'name' => 'Ash',
-                'scientific_name' => 'Fraxinus spp.',
                 'origin' => 'International',
                 'description' => 'A light-colored, strong, and flexible hardwood with straight grain.',
                 'characteristics' => 'Light color, tough and elastic, open grain.',
