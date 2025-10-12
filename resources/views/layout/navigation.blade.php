@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
   <div class="container">
     <a class="navbar-brand fw-bold text-success" href="{{ url('/') }}">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Tree_font_awesome.svg/1024px-Tree_font_awesome.svg.png" width="30" class="me-2">
-      LKI - Lambang Karya Indah
+      <img src="images/logo.png" width="50" class="me-2">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
