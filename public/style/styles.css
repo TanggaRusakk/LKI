@@ -31,7 +31,7 @@ body {
 
 .hero {
   background: linear-gradient(rgba(38,77,58,0.7), rgba(38,77,58,0.7)),
-              url('https://images.unsplash.com/photo-1565538810643-b5bdb714032a?auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+              url('../images/hero-bg.jpg') center/cover no-repeat;
   height: 85vh;
   color: #fff;
   display: flex;
