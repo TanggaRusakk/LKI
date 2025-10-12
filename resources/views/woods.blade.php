@@ -18,7 +18,7 @@
                         <h5 class="fw-bold text-success">{{ $wood->name }}</h5>
                         <p class="text-muted small flex-grow-1">{{ Str::limit($wood->description, 120) }}</p>
                         <a href="{{ route('woods.show', $wood->id) }}" 
-                           class="btn btn-outline-success rounded-pill mt-3">View More</a>
+                            class="btn btn-outline-success rounded-pill mt-3">View More</a>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                         <h5 class="fw-bold text-success">{{ $wood->name }}</h5>
                         <p class="text-muted small flex-grow-1">{{ Str::limit($wood->description, 120) }}</p>
                         <a href="{{ route('woods.show', $wood->id) }}" 
-                           class="btn btn-outline-success rounded-pill mt-3">View More</a>
+                            class="btn btn-outline-success rounded-pill mt-3">View More</a>
                     </div>
                 </div>
             </div>
