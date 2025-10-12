@@ -24,21 +24,21 @@
     <h2 class="section-title">Why Choose Us</h2>
     <div class="wood-grid">
       <div class="card text-center p-3">
-        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4" class="card-img-top">
+        <img src="images/high_precision.png" class="card-img-top">
         <div class="card-body">
           <h5 class="fw-bold text-success">High Precision</h5>
           <p>We process every piece with precision and attention to detail.</p>
         </div>
       </div>
       <div class="card text-center p-3">
-        <img src="https://images.unsplash.com/photo-1616628182502-47e4ec7a0e03" class="card-img-top">
+        <img src="images/sustainable.png" class="card-img-top">
         <div class="card-body">
           <h5 class="fw-bold text-success">Sustainable</h5>
           <p>All woods are responsibly sourced, ensuring a greener planet.</p>
         </div>
       </div>
       <div class="card text-center p-3">
-        <img src="https://images.unsplash.com/photo-1565538810643-b5bdb714032a" class="card-img-top">
+        <img src="images/experienced.png" class="card-img-top">
         <div class="card-body">
           <h5 class="fw-bold text-success">Experienced</h5>
           <p>Over 25 years of craftsmanship and trusted by many industries.</p>
