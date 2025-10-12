@@ -1,41 +1,51 @@
 @extends('layout.mainlayout')
 
 @section('content')
-<div class="container py-5" data-aos="fade-up">
-  <h2 class="text-center text-success fw-bold mb-5">Types of Wood We Handle</h2>
-  <div class="row g-4">
-    @foreach ([
-      ['name'=>'Teak (Jati)','desc'=>'Durable and elegant wood with rich color, ideal for furniture.','img'=>'https://images.unsplash.com/photo-1565538810643-b5bdb714032a'],
-      ['name'=>'Merbau','desc'=>'Hard tropical wood known for its reddish-brown hue and high strength.','img'=>'https://images.unsplash.com/photo-1578301978693-85fa9c0320e1'],
-      ['name'=>'Pine','desc'=>'Light-colored softwood used widely for interior design and flooring.','img'=>'https://images.unsplash.com/photo-1621121813613-b6d88173d02d']
-    ] as $wood)
-    <div class="col-md-4">
-      <div class="card shadow-sm hover-scale">
-        <img src="{{ $wood['img'] }}" class="card-img-top" alt="{{ $wood['name'] }}">
-        <div class="card-body text-center">
-          <h5 class="fw-bold">{{ $wood['name'] }}</h5>
-          <p>{{ $wood['desc'] }}</p>
-        </div>
-      </div>
-    @endforeach
-  </div>
+<div class="container py-5">
+    <h2 class="fw-bold text-center mb-5 fade-in">Wood Types That We Usually Handle</h2>
 
-  <h4 class="fw-bold mb-3 text-success">Imported Woods</h4>
-  <div class="wood-grid">
-    @foreach([
-      ['name'=>'Oak','price'=>'Rp 6.500.000/m³','use'=>'Luxury furniture','desc'=>'Dense wood with fine grain.','img'=>'https://images.unsplash.com/photo-1565538810643-b5bdb714032a'],
-      ['name'=>'Walnut','price'=>'Rp 7.200.000/m³','use'=>'Interior panels','desc'=>'Dark tone, premium texture.','img'=>'https://images.unsplash.com/photo-1616628182077-915d4793055b']
-    ] as $w)
-      <div class="card">
-        <img src="{{ $w['img'] }}" alt="{{ $w['name'] }}">
-        <div class="card-body">
-          <h5 class="fw-bold text-success">{{ $w['name'] }}</h5>
-          <p>{{ $w['desc'] }}</p>
-          <p><strong>Best for:</strong> {{ $w['use'] }}</p>
-          <span class="badge bg-success">{{ $w['price'] }}</span>
+    {{-- Kayu Lokal --}}
+    <section class="mb-5 fade-up">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <hr class="flex-grow-1 ms-3 border-2 border-success opacity-50">
         </div>
-      </div>
-    @endforeach
-  </div>
+        <div class="row gy-4">
+            @foreach($woods->where('origin', 'Indonesia') as $wood)
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 wood-card">
+                    <img src="{{ asset($wood->image) }}" class="card-img-top rounded-top" alt="{{ $wood->name }}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="fw-bold text-success">{{ $wood->name }}</h5>
+                        <p class="text-muted small flex-grow-1">{{ Str::limit($wood->description, 120) }}</p>
+                        <a href="{{ route('woods.show', $wood->id) }}" 
+                           class="btn btn-outline-success rounded-pill mt-3">View More</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section>
+
+    {{-- Kayu Impor --}}
+    <section class="fade-up">
+        <div class="d-flex align-items-center justify-content-between mb-3">
+            <hr class="flex-grow-1 ms-3 border-2 border-success opacity-50">
+        </div>
+        <div class="row gy-4">
+            @foreach($woods->where('origin', '!=', 'Indonesia') as $wood)
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 wood-card">
+                    <img src="{{ asset($wood->image) }}" class="card-img-top rounded-top" alt="{{ $wood->name }}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="fw-bold text-success">{{ $wood->name }}</h5>
+                        <p class="text-muted small flex-grow-1">{{ Str::limit($wood->description, 120) }}</p>
+                        <a href="{{ route('woods.show', $wood->id) }}" 
+                           class="btn btn-outline-success rounded-pill mt-3">View More</a>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section>
 </div>
 @endsection

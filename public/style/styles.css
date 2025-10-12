@@ -108,3 +108,96 @@ footer {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
 }
+
+.object-fit-cover {
+  object-fit: cover;
+}
+
+.card:hover img {
+  filter: brightness(0.9);
+}
+
+.btn-outline-success {
+  transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+  background-color: #198754;
+  color: #fff;
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease both;
+}
+.fade-up {
+  animation: fadeUp 0.8s ease both;
+}
+
+body {
+  background-color: #fafafa;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+.section-title {
+  font-weight: 700;
+  color: #198754;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.card {
+  border-radius: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.wood-card img {
+  height: 220px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.wood-card .card-body {
+  background-color: #fff;
+  border-radius: 0 0 16px 16px;
+}
+
+.service-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.service-card:hover {
+  background: #f9fff9;
+}
+
+.fade-up {
+  animation: fadeUp 1.2s ease both;
+}
+
+.fade-in {
+  animation: fadeIn 1.2s ease both;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

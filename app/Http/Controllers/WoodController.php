@@ -12,4 +12,9 @@ class WoodController extends Controller
         $woods = Wood::all();
         return view('woods', compact('woods'));
     }
+    public function show($id)
+    {
+        $wood = Wood::findOrFail($id);
+        return view('showwoods', compact('wood'));
+    }
 }
