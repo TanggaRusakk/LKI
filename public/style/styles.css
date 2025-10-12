@@ -31,7 +31,7 @@ body {
 
 .hero {
   background: linear-gradient(rgba(38,77,58,0.7), rgba(38,77,58,0.7)),
-              url('../images/hero-bg.jpg') center/cover no-repeat;
+              url('../images/hero-bg.png') center/cover no-repeat;
   height: 85vh;
   color: #fff;
   display: flex;
