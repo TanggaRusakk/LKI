@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Service;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -58,6 +59,8 @@ class ServiceSeeder extends Seeder
             ]
         ];
 
-        DB::table('services')->insertOrIgnore($services);
+        foreach ($services as $service) {
+            Service::create($service);
+        }
     }
 }
