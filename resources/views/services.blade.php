@@ -14,7 +14,7 @@
                     <p class="text-muted small">{{ $service->description }}</p>
                     <p class="fw-semibold text-dark mb-3">Price: <span class="text-success">Rp {{ number_format($service->price, 0, ',', '.') }}/m³</span></p>
                     <a href="https://wa.me/628123235655?text=Halo%20saya%20ingin%20konsultasi%20tentang%20layanan%20{{ urlencode($service->name) }}" 
-                       class="btn btn-outline-success rounded-pill px-4 py-2 fw-semibold">
+                        class="btn btn-outline-success rounded-pill px-4 py-2 fw-semibold">
                         Consultation via WhatsApp
                     </a>
                 </div>
