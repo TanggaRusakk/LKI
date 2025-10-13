@@ -14,9 +14,6 @@ class WoodSeeder extends Seeder
      */
     public function run(): void
     {
-    
-        $now = now();
-
         $woods = [
             // Indonesian Woods
             [

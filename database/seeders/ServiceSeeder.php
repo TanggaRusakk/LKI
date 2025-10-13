@@ -14,8 +14,6 @@ class ServiceSeeder extends Seeder
      */
     public function run(): void
     {
-        $now = now();
-
         $services = [
             [
                 'name' => 'Cutting',
