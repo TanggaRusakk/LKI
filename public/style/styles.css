@@ -16,15 +16,7 @@ body {
   margin-right: 1rem;
   position: relative;
 }
-.nav-link::after {
-  content: "";
-  display: block;
-  height: 2px;
-  width: 0;
-  background: #d7c5a0;
-  transition: width 0.3s;
-  margin-top: 3px;
-}
+
 .nav-link:hover::after {
   width: 100%;
 }
