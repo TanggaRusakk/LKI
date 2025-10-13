@@ -16,4 +16,13 @@ class Wood extends Model
     private $characteristics;
     private $uses;
     private $image;
+
+    protected $fillable = [
+        'name',
+        'origin',
+        'description',
+        'characteristics',
+        'uses',
+        'image'
+    ];
 }

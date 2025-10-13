@@ -14,4 +14,11 @@ class Service extends Model
     private $description;
     private $image;
     private $price;
+
+    protected $fillable = [
+        'name',
+        'description',
+        'image',
+        'price'
+    ];
 }
