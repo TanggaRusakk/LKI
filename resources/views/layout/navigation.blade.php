@@ -1,9 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm fixed-top">
   <div class="container">
-    <a class="navbar-brand fw-bold text-success" href="{{ url('/') }}">
-      <img src="images/logo.png" width="50" class="me-2">
+    <a class="navbar-brand fw-bold text-success d-flex align-items-center" href="{{ url('/') }}">
+      <img src="{{ asset('images/logo.png') }}" width="50" height="50" class="me-2" alt="Logo">
+      <span class="ms-1">LKI</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
