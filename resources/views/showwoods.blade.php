@@ -10,7 +10,7 @@
             <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
                 <h2 class="fw-bold text-success mb-3">{{ $wood->name }}</h2>
                 <p class="text-muted mb-1"><strong>Asal:</strong> {{ $wood->origin }}</p>
-                <hr class="border-success opacity-75" style="width: 80px;">
+                <hr class="border-success opacity-75 hr-short">
                 <p><strong>Description:</strong><br>{{ $wood->description }}</p>
                 <p><strong>Characteristics:</strong><br>{{ $wood->characteristics }}</p>
                 <p><strong>Uses:</strong><br>{{ $wood->uses }}</p>

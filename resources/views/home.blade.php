@@ -1,17 +1,26 @@
 @extends('layout.mainlayout')
 
 @section('content')
-<section class="hero">
-  <div class="container">
-    <h1>Lambang Karya Indah</h1>
-    <p>Crafting quality wood products since 1998</p>
+<section class="hero wood-texture">
+  <div class="hero-visual" style="background-image: url('{{ asset('images/hero-bg.jpg') }}')"></div>
+  <div class="container hero-inner">
+    <div class="row align-items-center">
+         <div class="col-lg-8 mx-auto text-center">
+           <h1 class="display-5">Lambang Karya Indah</h1>
+           <p class="lead">Industrial wood processing — precision milling, sustainable sourcing, and trusted delivery.</p>
+           <div class="hero-cta">
+             <a href="{{ route('woods') }}" class="btn btn-light btn-cta-primary btn-radius-12">Our Woods</a>
+             <a href="{{ route('services.index') }}" class="btn btn-outline-light btn-cta-outline btn-radius-12">Services</a>
+           </div>
+         </div>
+    </div>
   </div>
 </section>
 
 <section class="py-5 fade-up">
   <div class="container text-center">
-    <h2 class="section-title">About Us</h2>
-    <p class="mx-auto" style="max-width: 700px;">
+  <h2 class="section-title">About Us</h2>
+  <p class="mx-auto content-maxwidth">
       Established in 1998 by Mr. Sutrisno, Lambang Karya Indah (LKI) is a leading wood processing company
       that specializes in creating semi-finished wood materials. Our mission is to bring the warmth and strength
       of natural wood into every home and project.
@@ -19,7 +28,7 @@
   </div>
 </section>
 
-<section class="py-5 bg-light fade-up">
+<section class="py-5 fade-up">
   <div class="container">
     <h2 class="section-title">Why Choose Us</h2>
     <div class="wood-grid">
