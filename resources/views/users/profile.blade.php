@@ -41,9 +41,16 @@
                                 <input type="file" id="photo" name="photo" accept="image/*" class="d-none" onchange="previewPhoto(event)">
                                 
                                 <!-- Button alternatif yang lebih visible -->
-                                <label for="photo" class="btn btn-sm mb-2 text-white" style="background: linear-gradient(135deg, #5C4033 0%, #8B5A2B 100%); border: none;">
-                                    <i class="bi bi-upload me-1"></i> Change Photo
-                                </label>
+                                <div class="d-flex flex-column gap-2 mb-2">
+                                    <label for="photo" class="btn btn-sm text-white" style="background: linear-gradient(135deg, #5C4033 0%, #8B5A2B 100%); border: none;">
+                                        <i class="bi bi-upload me-1"></i> Change Photo
+                                    </label>
+
+                                    <!-- Always show delete button; JS will prevent action if there's no custom photo -->
+                                    <button id="delete-photo-btn" type="button" class="btn btn-sm btn-danger" data-has-photo="{{ Auth::user()->photo ? '1' : '0' }}" onclick="confirmDeletePhoto()">
+                                        <i class="bi bi-trash me-1"></i> Delete Photo
+                                    </button>
+                                </div>
                             </div>
                             @error('photo')
                                 <div class="alert alert-danger mt-2 py-2">{{ $message }}</div>
@@ -94,6 +101,12 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Hidden form for deleting photo (outside main form) -->
+            <form id="delete-photo-form" action="{{ route('profile.photo.delete') }}" method="POST" class="d-none">
+                @csrf
+                @method('DELETE')
+            </form>
 
             <!-- Change Password Card -->
             <div class="card shadow-sm border-0">
@@ -184,6 +197,21 @@ function previewPhoto(event) {
             document.getElementById('photo-preview').src = e.target.result;
         }
         reader.readAsDataURL(file);
+    }
+}
+
+function confirmDeletePhoto() {
+    // Check whether the user actually has a custom photo
+    const btn = document.getElementById('delete-photo-btn');
+    const hasPhoto = btn ? btn.dataset.hasPhoto === '1' : false;
+
+    if (!hasPhoto) {
+        alert('You do not have a custom profile photo to delete.');
+        return;
+    }
+
+    if (confirm('Are you sure you want to delete your profile photo? This action cannot be undone.')) {
+        document.getElementById('delete-photo-form').submit();
     }
 }
 </script>

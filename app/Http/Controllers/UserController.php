@@ -28,11 +28,45 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'photo' => 'nullable|image|mimes:jpeg,jpg,png,gif|max:2048',
         ]);
+
+        // Handle photo upload
+        if ($request->hasFile('photo')) {
+            // Delete old photo if exists
+            if ($user->photo && file_exists(public_path('images/profiles/' . $user->photo))) {
+                unlink(public_path('images/profiles/' . $user->photo));
+            }
+
+            // Upload new photo
+            $image = $request->file('photo');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('images/profiles'), $imageName);
+            $validated['photo'] = $imageName;
+        }
 
         $user->update($validated);
 
         return redirect()->route('profile')->with('success', 'Profile updated successfully!');
+    }
+
+    /**
+     * Delete user's profile photo.
+     */
+    public function deletePhoto()
+    {
+        $user = Auth::user();
+
+        // Delete photo file if exists
+        if ($user->photo && file_exists(public_path('images/profiles/' . $user->photo))) {
+            unlink(public_path('images/profiles/' . $user->photo));
+        }
+
+        // Set photo to null
+        $user->photo = null;
+        $user->save();
+
+        return redirect()->route('profile')->with('success', 'Profile photo deleted successfully!');
     }
 
     /**

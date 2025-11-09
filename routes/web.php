@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     // Profile Management
     Route::get('/profile', [UserController::class, 'profile'])->name('profile');
     Route::put('/profile', [UserController::class, 'updateProfile'])->name('profile.update');
+    Route::delete('/profile/photo', [UserController::class, 'deletePhoto'])->name('profile.photo.delete');
     Route::put('/profile/password', [UserController::class, 'updatePassword'])->name('profile.password.update');
     
     // User Reviews CRUD

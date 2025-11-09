@@ -72,6 +72,6 @@ class User extends Authenticatable
         if ($this->photo) {
             return asset('images/profiles/' . $this->photo);
         }
-        return asset('images/default-avatar.png');
+        return asset('images/default-profile.png');
     }
 }
