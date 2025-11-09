@@ -19,12 +19,22 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $service = Service::findOrFail($id);
 
+        // Get rating filter from request
+        $ratingFilter = $request->input('rating');
+
         // Paginate reviews for this service (5 per page), eager-load the user for each review
-        $reviews = $service->reviews()->with('user')->latest()->paginate(5);
+        $reviews = $service->reviews()
+            ->with('user')
+            ->when($ratingFilter, function ($query, $ratingFilter) {
+                return $query->where('rating', $ratingFilter);
+            })
+            ->latest()
+            ->paginate(5)
+            ->appends(['rating' => $ratingFilter]); // Keep rating parameter in pagination links
 
         return view('showservices', compact('service', 'reviews'));
     }

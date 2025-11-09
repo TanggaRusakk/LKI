@@ -109,9 +109,42 @@
                 </div>
             @endauth
 
-            <h5 class="fw-bold mb-4 mt-4">
-                Customer Reviews ({{ isset($reviews) ? $reviews->total() : $service->reviews->count() }})
-            </h5>
+            <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
+                <h5 class="fw-bold mb-0">
+                    Customer Reviews ({{ isset($reviews) ? $reviews->total() : $service->reviews->count() }})
+                </h5>
+                
+                <!-- Rating Filter -->
+                <div class="dropdown">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="ratingFilterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-filter me-2"></i>
+                        @if(request('rating'))
+                            {{ request('rating') }} Stars
+                        @else
+                            All Ratings
+                        @endif
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="ratingFilterDropdown">
+                        <li><a class="dropdown-item {{ !request('rating') ? 'active' : '' }}" href="{{ route('services.show', $service->id) }}">All Ratings</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item {{ request('rating') == '5' ? 'active' : '' }}" href="{{ route('services.show', ['service' => $service->id, 'rating' => 5]) }}">
+                            <i class="fas fa-star text-warning"></i> 5 Stars
+                        </a></li>
+                        <li><a class="dropdown-item {{ request('rating') == '4' ? 'active' : '' }}" href="{{ route('services.show', ['service' => $service->id, 'rating' => 4]) }}">
+                            <i class="fas fa-star text-warning"></i> 4 Stars
+                        </a></li>
+                        <li><a class="dropdown-item {{ request('rating') == '3' ? 'active' : '' }}" href="{{ route('services.show', ['service' => $service->id, 'rating' => 3]) }}">
+                            <i class="fas fa-star text-warning"></i> 3 Stars
+                        </a></li>
+                        <li><a class="dropdown-item {{ request('rating') == '2' ? 'active' : '' }}" href="{{ route('services.show', ['service' => $service->id, 'rating' => 2]) }}">
+                            <i class="fas fa-star text-warning"></i> 2 Stars
+                        </a></li>
+                        <li><a class="dropdown-item {{ request('rating') == '1' ? 'active' : '' }}" href="{{ route('services.show', ['service' => $service->id, 'rating' => 1]) }}">
+                            <i class="fas fa-star text-warning"></i> 1 Star
+                        </a></li>
+                    </ul>
+                </div>
+            </div>
 
             @forelse(isset($reviews) ? $reviews : $service->reviews as $review)
                 <div class="review-card p-4 mb-3 shadow-sm review-card-accent">
