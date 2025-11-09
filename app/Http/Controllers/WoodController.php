@@ -13,8 +13,8 @@ class WoodController extends Controller
         $searchLocal = $request->input('search_local');
         $searchImport = $request->input('search_import');
         
-        // Query for local woods (Indonesia)
-        $localWoods = Wood::where('origin', 'Indonesia')
+        // Query for local woods 
+        $localWoods = Wood::whereIn('origin', ['Indonesia', 'local'])
             ->when($searchLocal, function ($query, $searchLocal) {
                 return $query->where(function($q) use ($searchLocal) {
                     $q->where('name', 'like', "%{$searchLocal}%")
@@ -25,8 +25,8 @@ class WoodController extends Controller
             })
             ->paginate(3, ['*'], 'local_page');
         
-        // Query for imported woods (not Indonesia)
-        $importWoods = Wood::where('origin', '!=', 'Indonesia')
+        // Query for imported woods 
+        $importWoods = Wood::whereNotIn('origin', ['Indonesia', 'local'])
             ->when($searchImport, function ($query, $searchImport) {
                 return $query->where(function($q) use ($searchImport) {
                     $q->where('name', 'like', "%{$searchImport}%")
