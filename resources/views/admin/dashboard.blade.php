@@ -55,8 +55,8 @@
                 <div class="card-body">
                     <p class="text-muted">Manage wood products, add new woods, edit or delete existing ones.</p>
                     <div class="d-flex gap-2">
-                        <a href="{{ route('woods') }}" class="btn btn-outline-success">View All</a>
-                        <a href="#" class="btn btn-success">Add New Wood</a>
+                        <a href="{{ route('admin.woods.index') }}" class="btn btn-outline-success">View All</a>
+                        <a href="{{ route('admin.woods.create') }}" class="btn btn-success">Add New Wood</a>
                     </div>
                 </div>
             </div>
@@ -70,8 +70,8 @@
                 <div class="card-body">
                     <p class="text-muted">Manage services offered, add new services, edit or delete existing ones.</p>
                     <div class="d-flex gap-2">
-                        <a href="{{ route('services.index') }}" class="btn btn-outline-primary">View All</a>
-                        <a href="#" class="btn btn-primary">Add New Service</a>
+                        <a href="{{ route('admin.services.index') }}" class="btn btn-outline-success">View All</a>
+                        <a href="{{ route('admin.services.create') }}" class="btn btn-success">Add New Service</a>
                     </div>
                 </div>
             </div>
@@ -129,9 +129,13 @@
                                 <td>{{ $review->title }}</td>
                                 <td>
                                     <span class="text-warning">
-                                        @for($i = 0; $i < $review->rating; $i++)
-                                            ⭐
-                                        @endfor
+                                       @for($i = 1; $i <= 5; $i++)
+                                    @if($i <= $review->rating)
+                                        <i class="bi bi-star-fill"></i>
+                                    @else
+                                        <i class="bi bi-star"></i>
+                                    @endif
+                                @endfor
                                     </span>
                                 </td>
                                 <td>{{ Str::limit($review->comment, 50) }}</td>

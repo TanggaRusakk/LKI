@@ -65,7 +65,7 @@
                                 <input type="hidden" name="service_id" value="{{ $service->id }}">
                                 
                                 <div class="mb-3">
-                                    <label class="form-label fw-semibold">Rating</label>
+                                        <label class="form-label fw-semibold">Rating</label>
                                     <div class="rating-stars">
                                         @for($i = 5; $i >= 1; $i--)
                                             <input type="radio" name="rating" value="{{ $i }}" id="star{{ $i }}" {{ $i == 5 ? 'checked' : '' }}>
@@ -73,6 +73,14 @@
                                         @endfor
                                     </div>
                                 </div>
+
+                                    <div class="mb-3">
+                                        <label for="title" class="form-label fw-semibold">Title (optional)</label>
+                                        <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" placeholder="Short title for your review (optional)">
+                                        @error('title')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
                                 <div class="mb-3">
                                     <label for="comment" class="form-label fw-semibold">Your Review</label>
@@ -102,10 +110,10 @@
             @endauth
 
             <h5 class="fw-bold mb-4 mt-4">
-                All Reviews ({{ $service->reviews->count() }})
+                Customer Reviews ({{ isset($reviews) ? $reviews->total() : $service->reviews->count() }})
             </h5>
 
-            @forelse($service->reviews as $review)
+            @forelse(isset($reviews) ? $reviews : $service->reviews as $review)
                 <div class="review-card p-4 mb-3 shadow-sm review-card-accent">
                     <div class="d-flex justify-content-between align-items-start mb-3">
                         <div class="d-flex align-items-center">
@@ -129,10 +137,11 @@
                         </div>
                         
                         @auth
-                            @if(Auth::id() === $review->user_id || Auth::user()->isAdmin())
-                <button type="button" class="btn btn-danger btn-sm rounded-8" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#deleteReviewModal{{ $review->id }}">
+                            {{-- Only the review owner can delete their review; admins cannot delete other users' reviews --}}
+                            @if(Auth::id() === $review->user_id)
+                                <button type="button" class="btn btn-danger btn-sm rounded-8" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#deleteReviewModal{{ $review->id }}">
                                     <i class="fas fa-trash"></i>
                                 </button>
 
@@ -169,6 +178,22 @@
                     <p class="text-muted">No reviews yet. Be the first to review this service!</p>
                 </div>
             @endforelse
+
+            {{-- Pagination links for reviews (only shown when using pagination) --}}
+            @if(isset($reviews) && $reviews->hasPages())
+                <div class="mt-4 d-flex flex-column align-items-center">
+                    <div class="d-flex justify-content-center w-100 no-pagination-summary">
+                        {{ $reviews->links() }}
+                    </div>
+                    <div class="text-muted small mt-2">
+                        @if($reviews->total() > 0)
+                            Showing {{ $reviews->firstItem() }} to {{ $reviews->lastItem() }} of {{ $reviews->total() }} results
+                        @else
+                            Showing 0 results
+                        @endif
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>

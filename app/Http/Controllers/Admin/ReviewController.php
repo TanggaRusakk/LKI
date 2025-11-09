@@ -13,20 +13,12 @@ class ReviewController extends Controller
      */
     public function index()
     {
+        // Paginate admin review list (5 per page)
         $reviews = Review::with(['user','service'])
             ->latest()
-            ->paginate(20);
+            ->paginate(5);
         
         return view('admin.reviews.index', compact('reviews'));
     }
 
-    /**
-     * Remove the specified review from storage.
-     */
-    public function destroy(Review $review)
-    {
-        $review->delete();
-
-        return redirect()->route('admin.reviews.index')->with('success', 'Review deleted successfully!');
-    }
 }

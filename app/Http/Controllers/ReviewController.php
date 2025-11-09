@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use App\Models\Service;
 use App\Models\Review;
 
 class ReviewController extends Controller
@@ -30,17 +32,28 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
+        // Prevent admin users from creating reviews
+        if (Auth::user() && Auth::user()->role === 'admin') {
+            abort(403, 'Admins are not allowed to create reviews.');
+        }
+
         $validated = $request->validate([
             'service_id' => 'required|exists:services,id',
-            'title' => 'required|string|max:255',
+            'title' => 'nullable|string|max:255',
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'required|string|min:10',
         ]);
 
-        // create review attached to authenticated user
-        Auth::user()->reviews()->create($validated);
+        // If no title provided, generate a short title from the comment
+        if (empty($validated['title'])) {
+            $validated['title'] = Str::limit(strip_tags($validated['comment']), 60);
+        }
 
-        return redirect()->route('reviews.index')->with('success', 'Review created successfully!');
+        // create review attached to authenticated user
+        $review = Auth::user()->reviews()->create($validated);
+
+        // Redirect back to the service show page so the user can see their review immediately
+        return redirect()->route('services.show', $validated['service_id'])->with('success', 'Review created successfully!');
     }
 
     /**

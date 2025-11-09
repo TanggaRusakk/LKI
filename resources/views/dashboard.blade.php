@@ -17,6 +17,7 @@
                     </div>
                 </div>
                 
+                @if(!auth()->user()->isAdmin())
                 <div class="col-md-4">
                     <div class="card shadow-sm border-0 h-100">
                         <div class="card-body text-center">
@@ -27,6 +28,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 
                 <div class="col-md-4">
                     <div class="card shadow-sm border-0 h-100">

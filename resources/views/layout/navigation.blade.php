@@ -25,7 +25,9 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
               <li><a class="dropdown-item" href="{{ route('profile') }}">My Profile</a></li>
-              <li><a class="dropdown-item" href="{{ route('reviews.index') }}">My Reviews</a></li>
+              @if(!auth()->user()->isAdmin())
+                <li><a class="dropdown-item" href="{{ route('reviews.index') }}">My Reviews</a></li>
+              @endif
               @if(auth()->user()->isAdmin())
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin Dashboard</a></li>
@@ -65,9 +67,11 @@
               <a href="{{ route('profile') }}" class="text-light text-decoration-none">
                 <i class="bi bi-person me-2"></i>My Profile
               </a>
-              <a href="{{ route('reviews.index') }}" class="text-light text-decoration-none">
-                <i class="bi bi-chat-left-text me-2"></i>My Reviews
-              </a>
+              @if(!auth()->user()->isAdmin())
+                <a href="{{ route('reviews.index') }}" class="text-light text-decoration-none">
+                  <i class="bi bi-chat-left-text me-2"></i>My Reviews
+                </a>
+              @endif
               @if(auth()->user()->isAdmin())
                 <a href="{{ route('admin.dashboard') }}" class="text-light text-decoration-none">
                   <i class="bi bi-shield-check me-2"></i>Admin Dashboard

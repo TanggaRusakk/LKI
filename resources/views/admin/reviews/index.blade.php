@@ -97,17 +97,6 @@
                             <span><i class="bi bi-clock me-1"></i>{{ $review->created_at->diffForHumans() }}</span>
                         </div>
                     </div>
-                    
-                    <div class="ms-3">
-                        <form action="{{ route('admin.reviews.destroy', $review) }}" method="POST" 
-                              onsubmit="return confirm('Are you sure you want to delete this review?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-outline-danger">
-                                <i class="bi bi-trash"></i> Delete
-                            </button>
-                        </form>
-                    </div>
                 </div>
             </div>
             @empty
@@ -121,8 +110,17 @@
 
     <!-- Pagination -->
     @if($reviews->hasPages())
-    <div class="mt-4 d-flex justify-content-center">
-        {{ $reviews->links() }}
+    <div class="mt-4 d-flex flex-column align-items-center">
+        <div class="d-flex justify-content-center w-100 no-pagination-summary">
+            {{ $reviews->links() }}
+        </div>
+        <div class="text-muted small mt-2">
+            @if($reviews->total() > 0)
+                Showing {{ $reviews->firstItem() }} to {{ $reviews->lastItem() }} of {{ $reviews->total() }} results
+            @else
+                Showing 0 results
+            @endif
+        </div>
     </div>
     @endif
 </div>

@@ -6,9 +6,7 @@
         <div class="col-12">
             <div class="d-flex justify-content-between align-items-center mb-4">
                 <h2 class="fw-bold mb-0"><i class="bi bi-chat-left-text me-2"></i>My Reviews</h2>
-                <a href="{{ route('reviews.create') }}" class="btn btn-success">
-                    <i class="bi bi-plus-circle me-2"></i>Add New Review
-                </a>
+                {{-- Removed "Add New Review" button - reviews can only be created from service pages --}}
             </div>
 
             @if (session('success'))
@@ -59,9 +57,7 @@
             <div class="text-center py-5">
                 <i class="bi bi-chat-left-text fs-1 text-muted mb-3 d-block"></i>
                 <p class="text-muted mb-3">You haven't created any reviews yet.</p>
-                <a href="{{ route('reviews.create') }}" class="btn btn-success">
-                    <i class="bi bi-plus-circle me-2"></i>Create Your First Review
-                </a>
+                <p class="text-muted">Visit a <a href="{{ route('services.index') }}">service page</a> to leave a review.</p>
             </div>
             @endforelse
 

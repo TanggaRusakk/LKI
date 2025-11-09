@@ -17,8 +17,11 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => \App\Models\User::factory(),
-            'service_id' => \App\Models\Service::factory(),
+            // Prefer a non-admin user when picking an existing user for seeded reviews
+            'user_id' => \App\Models\User::where('role', '!=', 'admin')->count()
+                ? \App\Models\User::where('role', '!=', 'admin')->inRandomOrder()->first()->id
+                : \App\Models\User::factory(),
+            'service_id' => \App\Models\Service::count() ? \App\Models\Service::inRandomOrder()->first()->id : \App\Models\Service::factory(),
             'title' => fake()->sentence(4),
             'rating' => fake()->numberBetween(1, 5),
             'comment' => fake()->paragraph(3),
