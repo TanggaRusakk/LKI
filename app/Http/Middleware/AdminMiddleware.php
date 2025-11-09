@@ -19,6 +19,7 @@ class AdminMiddleware
             abort(403, 'Unauthorized access. Admin only.');
         }
 
+        
         return $next($request);
     }
 }
