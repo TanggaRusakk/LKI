@@ -73,6 +73,9 @@
                         </div>
                         
                         <h5 class="fw-bold mb-2">{{ $review->title }}</h5>
+                        @if($review->service)
+                            <div class="mb-2"><small class="text-muted">Service: <a href="{{ route('services.show', $review->service->id) }}">{{ $review->service->name }}</a></small></div>
+                        @endif
                         
                         <div class="mb-2">
                             <span class="text-warning">

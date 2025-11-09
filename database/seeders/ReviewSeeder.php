@@ -15,9 +15,11 @@ class ReviewSeeder extends Seeder
         $users = \App\Models\User::all();
 
         // Create some general reviews
+        $services = \App\Models\Service::all();
         foreach ($users as $user) {
             \App\Models\Review::create([
                 'user_id' => $user->id,
+                'service_id' => $services->random()->id,
                 'title' => fake()->sentence(4),
                 'rating' => rand(3, 5),
                 'comment' => fake()->paragraph(2),

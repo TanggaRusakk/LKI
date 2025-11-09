@@ -12,6 +12,7 @@ class Review extends Model
 
     protected $fillable = [
         'user_id',
+        'service_id',
         'rating',
         'comment',
         'title'
@@ -23,5 +24,13 @@ class Review extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the service that this review is about.
+     */
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
     }
 }

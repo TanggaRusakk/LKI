@@ -16,4 +16,12 @@ class Service extends Model
         'image',
         'price'
     ];
+
+    /**
+     * Get reviews for this service.
+     */
+    public function reviews()
+    {
+        return $this->hasMany(\App\Models\Review::class);
+    }
 }

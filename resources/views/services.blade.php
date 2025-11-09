@@ -13,9 +13,9 @@
                     <h5 class="fw-bold title-walnut">{{ $service->name }}</h5>
                     <p class="text-muted small">{{ Str::limit($service->description, 120) }}</p>
                     <p class="fw-semibold text-dark mb-3">Price: <span class="price-dark">Rp {{ number_format($service->price, 0, ',', '.') }}/m³</span></p>
-                    <a href="https://wa.me/628123235655?text=Halo%20saya%20ingin%20konsultasi%20tentang%20layanan%20{{ urlencode($service->name) }}" 
-                        class="btn btn-outline-dark px-4 py-2 fw-semibold btn-radius-12">
-                        Consultation via WhatsApp
+                    <a href="{{ route('services.show', $service->id) }}" 
+                        class="btn btn-primary px-4 py-2 fw-semibold btn-radius-12">
+                        View More
                     </a>
                 </div>
             </div>

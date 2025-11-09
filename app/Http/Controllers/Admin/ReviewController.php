@@ -13,7 +13,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $reviews = Review::with('user')
+        $reviews = Review::with(['user','service'])
             ->latest()
             ->paginate(20);
         

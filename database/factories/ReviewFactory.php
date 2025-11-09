@@ -18,6 +18,7 @@ class ReviewFactory extends Factory
     {
         return [
             'user_id' => \App\Models\User::factory(),
+            'service_id' => \App\Models\Service::factory(),
             'title' => fake()->sentence(4),
             'rating' => fake()->numberBetween(1, 5),
             'comment' => fake()->paragraph(3),

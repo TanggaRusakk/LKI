@@ -31,11 +31,13 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'service_id' => 'required|exists:services,id',
             'title' => 'required|string|max:255',
             'rating' => 'required|integer|min:1|max:5',
             'comment' => 'required|string|min:10',
         ]);
 
+        // create review attached to authenticated user
         Auth::user()->reviews()->create($validated);
 
         return redirect()->route('reviews.index')->with('success', 'Review created successfully!');
