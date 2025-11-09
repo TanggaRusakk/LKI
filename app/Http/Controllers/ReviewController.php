@@ -100,8 +100,16 @@ class ReviewController extends Controller
             abort(403, 'Unauthorized action.');
         }
 
+        // Store service_id before deleting
+        $serviceId = $review->service_id;
+        
         $review->delete();
 
+        // Redirect back to service show page if review has service_id, otherwise to reviews index
+        if ($serviceId) {
+            return redirect()->route('services.show', $serviceId)->with('success', 'Review deleted successfully!');
+        }
+        
         return redirect()->route('reviews.index')->with('success', 'Review deleted successfully!');
     }
 }
