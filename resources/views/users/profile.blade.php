@@ -152,9 +152,72 @@
                     </form>
                 </div>
             </div>
+
+            <!-- Delete Account Card -->
+            <div class="card shadow-sm border-0 border-danger mt-4">
+                <div class="card-header bg-danger text-white py-3">
+                    <h4 class="mb-0"><i class="bi bi-exclamation-triangle me-2"></i>Delete My Account</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="alert alert-warning mb-4">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>Warning:</strong> Once you delete your account, there is no going back. This action will permanently delete:
+                        <ul class="mb-0 mt-2">
+                            <li>Your profile information</li>
+                            <li>All your reviews and ratings</li>
+                            <li>Your profile photo</li>
+                        </ul>
+                    </div>
+
+                    <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                        <i class="bi bi-trash me-2"></i>Delete
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<!-- Delete Account Confirmation Modal -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteAccountModalLabel">
+                    <i class="bi bi-exclamation-triangle me-2"></i>Confirm Account Deletion
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('profile.account.delete') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                
+                <div class="modal-body">
+                    <p class="fw-bold text-danger">This action cannot be undone!</p>
+                    <p>Please enter your password to confirm account deletion:</p>
+                    
+                    <div class="mb-3">
+                        <label for="delete_password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="delete_password" name="password" required>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash me-2"></i>Yes, Delete My Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden form for deleting photo (outside main form) -->
+<form id="delete-photo-form" action="{{ route('profile.photo.delete') }}" method="POST" class="d-none">
+    @csrf
+    @method('DELETE')
+</form>
 
 <style>
 /* Hover effect untuk camera button */

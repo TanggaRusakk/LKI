@@ -85,4 +85,39 @@ class UserController extends Controller
 
         return redirect()->route('profile')->with('success', 'Password changed successfully!');
     }
+
+    /**
+     * Delete user's account and all related data.
+     */
+    public function deleteAccount(Request $request)
+    {
+        $user = Auth::user();
+
+        // Prevent admin from deleting their account
+        if ($user->isAdmin()) {
+            return redirect()->route('profile')->with('error', 'Admin accounts cannot be deleted.');
+        }
+
+        // Validate password confirmation
+        $request->validate([
+            'password' => 'required|current_password',
+        ]);
+
+        // Delete profile photo if exists
+        if ($user->photo && file_exists(public_path('images/profiles/' . $user->photo))) {
+            unlink(public_path('images/profiles/' . $user->photo));
+        }
+
+        // Logout user
+        Auth::logout();
+
+        // Delete user (cascade will delete all reviews automatically)
+        $user->delete();
+
+        // Invalidate session
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home')->with('success', 'Your account has been deleted successfully.');
+    }
 }
