@@ -21,7 +21,7 @@
           {{-- User is logged in - Show profile dropdown --}}
           <li class="nav-item dropdown ms-3">
             <a class="nav-link dropdown-toggle text-light d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="bi bi-person-circle fs-4"></i>
+              <img src="{{ Auth::user()->photo_url }}" alt="Profile" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover; border: 2px solid #fff;">
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
               <li><a class="dropdown-item" href="{{ route('profile') }}">My Profile</a></li>
@@ -61,7 +61,7 @@
           {{-- Mobile: Show user menu when logged in --}}
           <div class="user-mobile-menu mb-4">
             <div class="d-flex align-items-center justify-content-center mb-3">
-              <i class="bi bi-person-circle text-light"></i>
+              <img src="{{ Auth::user()->photo_url }}" alt="Profile" class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; border: 3px solid #fff;">
             </div>
             <div class="d-flex flex-column gap-2">
               <a href="{{ route('profile') }}" class="text-light text-decoration-none">

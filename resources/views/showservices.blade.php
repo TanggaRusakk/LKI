@@ -125,21 +125,21 @@
                         @endif
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="ratingFilterDropdown">
-                        <li><a class="dropdown-item {{ !request('rating') ? 'active' : '' }}" href="{{ route('services.show', $service->id) }}">All Ratings</a></li>
+                        <li><a class="dropdown-item {{ !request('rating') ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id]) }}">All Ratings</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item {{ request('rating') == '5' ? 'active' : '' }}" href="{{ route('services.show', ['service' => $service->id, 'rating' => 5]) }}">
+                        <li><a class="dropdown-item {{ request('rating') == '5' ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id, 'rating' => 5]) }}">
                             <i class="fas fa-star text-warning"></i> 5 Stars
                         </a></li>
-                        <li><a class="dropdown-item {{ request('rating') == '4' ? 'active' : '' }}" href="{{ route('services.show', ['service' => $service->id, 'rating' => 4]) }}">
+                        <li><a class="dropdown-item {{ request('rating') == '4' ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id, 'rating' => 4]) }}">
                             <i class="fas fa-star text-warning"></i> 4 Stars
                         </a></li>
-                        <li><a class="dropdown-item {{ request('rating') == '3' ? 'active' : '' }}" href="{{ route('services.show', ['service' => $service->id, 'rating' => 3]) }}">
+                        <li><a class="dropdown-item {{ request('rating') == '3' ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id, 'rating' => 3]) }}">
                             <i class="fas fa-star text-warning"></i> 3 Stars
                         </a></li>
-                        <li><a class="dropdown-item {{ request('rating') == '2' ? 'active' : '' }}" href="{{ route('services.show', ['service' => $service->id, 'rating' => 2]) }}">
+                        <li><a class="dropdown-item {{ request('rating') == '2' ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id, 'rating' => 2]) }}">
                             <i class="fas fa-star text-warning"></i> 2 Stars
                         </a></li>
-                        <li><a class="dropdown-item {{ request('rating') == '1' ? 'active' : '' }}" href="{{ route('services.show', ['service' => $service->id, 'rating' => 1]) }}">
+                        <li><a class="dropdown-item {{ request('rating') == '1' ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id, 'rating' => 1]) }}">
                             <i class="fas fa-star text-warning"></i> 1 Star
                         </a></li>
                     </ul>
@@ -147,14 +147,17 @@
             </div>
 
             @forelse(isset($reviews) ? $reviews : $service->reviews as $review)
-                <div class="review-card p-4 mb-3 shadow-sm review-card-accent">
+                <div class="review-card p-4 mb-3 shadow-sm border-0" style="border-left: 4px solid {{ $loop->iteration % 2 == 1 ? '#8B5A2B' : '#4A6B3C' }} !important;">
                     <div class="d-flex justify-content-between align-items-start mb-3">
                         <div class="d-flex align-items-center">
                             <div class="user-avatar me-3">
-                                <i class="fas fa-user-circle fa-3x text-primary"></i>
+                                <img src="{{ $review->user->photo_url }}" 
+                                     alt="{{ $review->user->name }}" 
+                                     class="rounded-circle"
+                                     style="width: 50px; height: 50px; object-fit: cover; border: 3px solid {{ $loop->iteration % 2 == 1 ? '#8B5A2B' : '#4A6B3C' }};">
                             </div>
                             <div>
-                                <h6 class="fw-bold mb-1">{{ $review->user->name }}</h6>
+                                <h6 class="fw-bold mb-1" style="color: {{ $loop->iteration % 2 == 1 ? '#5C4033' : '#4A6B3C' }};">{{ $review->user->name }}</h6>
                                 <div class="mb-1">
                                     @for($i = 1; $i <= 5; $i++)
                                         @if($i <= $review->rating)
@@ -175,7 +178,7 @@
                                 <form method="POST" action="{{ route('reviews.destroy', $review->id) }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this review?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm rounded-8">
+                                    <button type="submit" class="btn btn-sm text-white" style="background: {{ $loop->iteration % 2 == 1 ? 'linear-gradient(135deg, #5C4033 0%, #8B5A2B 100%)' : '#4A6B3C' }}; border: none;">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </form>

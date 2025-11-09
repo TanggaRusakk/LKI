@@ -59,22 +59,23 @@
     <div class="card shadow-sm border-0">
         <div class="card-body p-0">
             @forelse($reviews as $review)
-            <div class="review-item p-4 border-bottom">
+            <div class="review-item p-4 border-bottom" style="border-left: 4px solid {{ $loop->iteration % 2 == 1 ? '#8B5A2B' : '#4A6B3C' }} !important; background: {{ $loop->iteration % 2 == 1 ? '#FFF8E7' : '#F0F5EE' }};">
                 <div class="d-flex justify-content-between align-items-start mb-3">
                     <div class="flex-grow-1">
                         <div class="d-flex align-items-center mb-2">
-                            <div class="avatar-circle bg-info text-white me-2">
-                                {{ strtoupper(substr($review->user->name, 0, 1)) }}
-                            </div>
+                            <img src="{{ $review->user->photo_url }}" 
+                                 alt="{{ $review->user->name }}" 
+                                 class="rounded-circle me-2"
+                                 style="width: 45px; height: 45px; object-fit: cover; border: 3px solid {{ $loop->iteration % 2 == 1 ? '#8B5A2B' : '#4A6B3C' }};">
                             <div>
-                                <h6 class="mb-0 fw-semibold">{{ $review->user->name }}</h6>
+                                <h6 class="mb-0 fw-semibold" style="color: {{ $loop->iteration % 2 == 1 ? '#5C4033' : '#4A6B3C' }};">{{ $review->user->name }}</h6>
                                 <small class="text-muted">{{ $review->user->email }}</small>
                             </div>
                         </div>
                         
                         <h5 class="fw-bold mb-2">{{ $review->title }}</h5>
                         @if($review->service)
-                            <div class="mb-2"><small class="text-muted">Service: <a href="{{ route('services.show', $review->service->id) }}">{{ $review->service->name }}</a></small></div>
+                            <div class="mb-2"><small class="text-muted">Service: <a href="{{ route('services.show', $review->service->id) }}" style="color: {{ $loop->iteration % 2 == 1 ? '#8B5A2B' : '#4A6B3C' }}; font-weight: bold;">{{ $review->service->name }}</a></small></div>
                         @endif
                         
                         <div class="mb-2">

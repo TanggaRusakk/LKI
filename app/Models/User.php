@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role', // admin or user
+        'photo',
     ];
 
     /**
@@ -61,5 +62,16 @@ class User extends Authenticatable
     public function isAdmin()
     {
         return $this->role === 'admin';
+    }
+
+    /**
+     * Get the user's photo URL.
+     */
+    public function getPhotoUrlAttribute()
+    {
+        if ($this->photo) {
+            return asset('images/profiles/' . $this->photo);
+        }
+        return asset('images/default-avatar.png');
     }
 }
