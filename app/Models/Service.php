@@ -10,11 +10,6 @@ class Service extends Model
     /** @use HasFactory<\Database\Factories\ServiceFactory> */
     use HasFactory;
 
-    private $name;
-    private $description;
-    private $image;
-    private $price;
-
     protected $fillable = [
         'name',
         'description',

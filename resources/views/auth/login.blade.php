@@ -1,76 +1,71 @@
 @extends('layout.mainlayout')
 
 @section('content')
-<div class="container mt-5 pt-5">
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-5">
-            <div class="card shadow-lg border-0 card-rounded-20">
+            <div class="card shadow-lg border-0">
                 <div class="card-body p-5">
-                    <div class="text-center mb-4">
-                        <div class="login-icon mb-3">
-                            <i class="fas fa-user-circle fa-4x text-primary"></i>
-                        </div>
-                        <h2 class="fw-bold gradient-text-blue">Welcome Back!</h2>
-                        <p class="text-muted">Login to your account</p>
-                    </div>
-
-                    @if ($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            @foreach ($errors->all() as $error)
-                                <p class="mb-0">{{ $error }}</p>
-                            @endforeach
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <h2 class="fw-bold text-center mb-4 text-success">Sign In</h2>
+                    
+                    <!-- Session Status -->
+                    @if (session('status'))
+                        <div class="alert alert-success mb-4">
+                            {{ session('status') }}
                         </div>
                     @endif
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-                        
-                        <div class="mb-4">
-                            <label for="email" class="form-label fw-semibold">Email Address</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0">
-                                    <i class="fas fa-envelope text-muted"></i>
-                                </span>
-                                <input type="email" class="form-control border-start-0 @error('email') is-invalid @enderror" 
-                                       id="email" name="email" value="{{ old('email') }}" 
-                                       placeholder="Enter your email" required autofocus>
-                            </div>
+
+                        <!-- Email Address -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" 
+                                   name="email" value="{{ old('email') }}" required autofocus autocomplete="username">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="mb-4">
-                            <label for="password" class="form-label fw-semibold">Password</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0">
-                                    <i class="fas fa-lock text-muted"></i>
-                                </span>
-                                <input type="password" class="form-control border-start-0 @error('password') is-invalid @enderror" 
-                                       id="password" name="password" 
-                                       placeholder="Enter your password" required>
-                            </div>
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" 
+                                   name="password" required autocomplete="current-password">
+                            @error('password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
-                        <div class="mb-4 form-check">
-                            <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                            <label class="form-check-label" for="remember">
+                        <!-- Remember Me -->
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="remember_me" name="remember">
+                            <label class="form-check-label" for="remember_me">
                                 Remember me
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100 py-3 fw-bold btn-radius-12 btn-gradient-primary borderless" >
-                            <i class="fas fa-sign-in-alt me-2"></i>Login
-                        </button>
-                    </form>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}" class="text-decoration-none small">
+                                    Forgot your password?
+                                </a>
+                            @endif
+                        </div>
 
-                    <div class="text-center mt-4">
-                        <p class="text-muted">Don't have an account? 
-                            <a href="{{ route('register') }}" class="fw-bold text-primary text-decoration-none">Sign Up</a>
-                        </p>
-                    </div>
+                        <button type="submit" class="btn btn-success w-100 mb-3">
+                            Sign In
+                        </button>
+
+                        <div class="text-center">
+                            <span class="text-muted">Don't have an account?</span>
+                            <a href="{{ route('register') }}" class="text-success text-decoration-none fw-bold">Sign Up</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- login view uses centralized styles in public/style/styles.css -->
 @endsection

@@ -12,6 +12,19 @@ class ReviewSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $users = \App\Models\User::all();
+
+        // Create some general reviews
+        foreach ($users as $user) {
+            \App\Models\Review::create([
+                'user_id' => $user->id,
+                'title' => fake()->sentence(4),
+                'rating' => rand(3, 5),
+                'comment' => fake()->paragraph(2),
+            ]);
+        }
+
+        // Create some additional reviews
+        \App\Models\Review::factory(10)->create();
     }
 }

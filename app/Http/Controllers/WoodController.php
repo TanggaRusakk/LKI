@@ -7,11 +7,40 @@ use App\Models\Wood;
 
 class WoodController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $woods = Wood::all();
-        return view('woods', compact('woods'));
+        // Get search queries
+        $searchLocal = $request->input('search_local');
+        $searchImport = $request->input('search_import');
+        
+        // Query for local woods (Indonesia)
+        $localWoods = Wood::where('origin', 'Indonesia')
+            ->when($searchLocal, function ($query, $searchLocal) {
+                return $query->where(function($q) use ($searchLocal) {
+                    $q->where('name', 'like', "%{$searchLocal}%")
+                      ->orWhere('description', 'like', "%{$searchLocal}%")
+                      ->orWhere('characteristics', 'like', "%{$searchLocal}%")
+                      ->orWhere('uses', 'like', "%{$searchLocal}%");
+                });
+            })
+            ->paginate(3, ['*'], 'local_page');
+        
+        // Query for imported woods (not Indonesia)
+        $importWoods = Wood::where('origin', '!=', 'Indonesia')
+            ->when($searchImport, function ($query, $searchImport) {
+                return $query->where(function($q) use ($searchImport) {
+                    $q->where('name', 'like', "%{$searchImport}%")
+                      ->orWhere('description', 'like', "%{$searchImport}%")
+                      ->orWhere('characteristics', 'like', "%{$searchImport}%")
+                      ->orWhere('uses', 'like', "%{$searchImport}%")
+                      ->orWhere('origin', 'like', "%{$searchImport}%");
+                });
+            })
+            ->paginate(3, ['*'], 'import_page');
+        
+        return view('woods', compact('localWoods', 'importWoods'));
     }
+    
     public function show($id)
     {
         $wood = Wood::findOrFail($id);
