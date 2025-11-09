@@ -139,34 +139,13 @@
                         @auth
                             {{-- Only the review owner can delete their review; admins cannot delete other users' reviews --}}
                             @if(Auth::id() === $review->user_id)
-                                <button type="button" class="btn btn-danger btn-sm rounded-8" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#deleteReviewModal{{ $review->id }}">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-
-                                <!-- Delete Review Modal -->
-                                <div class="modal fade modal-rounded-15" id="deleteReviewModal{{ $review->id }}" tabindex="-1">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header bg-danger text-white">
-                                                <h5 class="modal-title"><i class="fas fa-exclamation-triangle me-2"></i>Delete Review</h5>
-                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Are you sure you want to delete this review?</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <form method="POST" action="{{ route('reviews.destroy', $review->id) }}" class="d-inline">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <form method="POST" action="{{ route('reviews.destroy', $review->id) }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this review?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm rounded-8">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
                             @endif
                         @endauth
                     </div>
