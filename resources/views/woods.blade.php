@@ -52,8 +52,17 @@
 
         {{-- Pagination untuk Local Woods --}}
         @if($localWoods->hasPages())
-        <div class="mt-4 d-flex justify-content-center">
-            {{ $localWoods->appends(['search_local' => request('search_local')])->links() }}
+        <div class="mt-4 d-flex flex-column align-items-center">
+            <div class="d-flex justify-content-center w-100 no-pagination-summary">
+                {{ $localWoods->appends(['search_local' => request('search_local')])->links() }}
+            </div>
+            <div class="text-muted small mt-2">
+                @if($localWoods->total() > 0)
+                    Showing {{ $localWoods->firstItem() }} to {{ $localWoods->lastItem() }} of {{ $localWoods->total() }} results
+                @else
+                    Showing 0 results
+                @endif
+            </div>
         </div>
         @endif
     </section>
@@ -61,8 +70,8 @@
     {{-- Kayu Impor Section --}}
     <section class="fade-up">
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h3 class="fw-bold text-primary mb-0">Imported Woods</h3>
-            <hr class="flex-grow-1 ms-3 border-2 border-primary opacity-50">
+            <h3 class="fw-bold text-success mb-0">Imported Woods</h3>
+            <hr class="flex-grow-1 ms-3 border-2 border-success opacity-50">
         </div>
         
         {{-- Search Bar untuk Impor --}}
@@ -73,7 +82,7 @@
                     <input type="text" name="search_import" class="form-control" 
                            placeholder="Search imported woods..." 
                            value="{{ request('search_import') }}">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-success" type="submit">
                         <i class="bi bi-search"></i> Search
                     </button>
                     @if(request('search_import'))
@@ -89,11 +98,11 @@
                 <div class="card border-0 shadow-sm h-100 wood-card">
                     <img src="{{ asset($wood->image) }}" class="card-img-top rounded-top" alt="{{ $wood->name }}">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="fw-bold text-primary">{{ $wood->name }}</h5>
+                        <h5 class="fw-bold text-success">{{ $wood->name }}</h5>
                         <p class="text-muted small mb-1"><i class="bi bi-geo-alt-fill"></i> {{ $wood->origin }}</p>
                         <p class="text-muted small flex-grow-1">{{ Str::limit($wood->description, 120) }}</p>
                         <a href="{{ route('woods.show', $wood->id) }}" 
-                            class="btn btn-outline-primary rounded-pill mt-3">View More</a>
+                            class="btn btn-outline-success rounded-pill mt-3">View More</a>
                     </div>
                 </div>
             </div>
@@ -106,8 +115,17 @@
 
         {{-- Pagination untuk Import Woods --}}
         @if($importWoods->hasPages())
-        <div class="mt-4 d-flex justify-content-center">
-            {{ $importWoods->appends(['search_import' => request('search_import')])->links() }}
+        <div class="mt-4 d-flex flex-column align-items-center">
+            <div class="d-flex justify-content-center w-100 no-pagination-summary">
+                {{ $importWoods->appends(['search_import' => request('search_import')])->links() }}
+            </div>
+            <div class="text-muted small mt-2">
+                @if($importWoods->total() > 0)
+                    Showing {{ $importWoods->firstItem() }} to {{ $importWoods->lastItem() }} of {{ $importWoods->total() }} results
+                @else
+                    Showing 0 results
+                @endif
+            </div>
         </div>
         @endif
     </section>

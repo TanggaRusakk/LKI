@@ -22,28 +22,28 @@
                 <img src="{{ asset($service->image) }}" class="img-fluid page-hero-img-min500 object-fit-cover" alt="{{ $service->name }}">
             </div>
             <div class="col-md-6 p-5 d-flex flex-column justify-content-center">
-                <h1 class="fw-bold mb-3 gradient-text-blue">
+                <h1 class="fw-bold mb-3 service-name">
                     {{ $service->name }}
                 </h1>
                 
                 <div class="mb-4">
-                    <h5 class="fw-bold text-primary"><i class="fas fa-info-circle me-2"></i>Description</h5>
+                    <h5 class="fw-bold service-desc-title">Description</h5>
                     <p class="text-muted">{{ $service->description }}</p>
                 </div>
 
                 <div class="mb-4">
-                    <h5 class="fw-bold text-success"><i class="fas fa-tag me-2"></i>Price</h5>
+                    <h5 class="fw-bold text-success">Price</h5>
                     <h3 class="text-success">Rp {{ number_format($service->price, 0, ',', '.') }}/m³</h3>
                 </div>
 
                 <div class="d-flex gap-2">
                     <a href="https://wa.me/628123235655?text=Halo%20saya%20ingin%20konsultasi%20tentang%20layanan%20{{ urlencode($service->name) }}" 
                         class="btn btn-success btn-lg flex-grow-1 py-3 fw-semibold btn-radius-15">
-                        <i class="fab fa-whatsapp me-2"></i>Consult via WhatsApp
+                        Consult via WhatsApp
                     </a>
                 </div>
                 <a href="{{ route('services.index') }}" class="btn btn-primary mt-3 px-4 py-3 fw-semibold btn-radius-15">
-                    <i class="fas fa-arrow-left me-2"></i>Back to Services
+                   ← Back to Services
                 </a>
             </div>
         </div>
@@ -85,24 +85,24 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-warning fw-bold px-4 btn-radius-12">
-                                    <i class="fas fa-paper-plane me-2"></i>Submit Review
+                                    Submit Review
                                 </button>
                             </form>
                         </div>
                     </div>
                 @else
                     <div class="alert alert-info">
-                        <i class="fas fa-info-circle me-2"></i>Admins cannot leave reviews.
+                        Admins cannot leave reviews.
                     </div>
                 @endif
             @else
                 <div class="alert alert-warning">
-                    <i class="fas fa-sign-in-alt me-2"></i>Please <a href="{{ route('login') }}" class="alert-link">login</a> to leave a review.
+                    Please <a href="{{ route('login') }}" class="alert-link">login</a> to leave a review.
                 </div>
             @endauth
 
             <h5 class="fw-bold mb-4 mt-4">
-                <i class="fas fa-comments me-2"></i>All Reviews ({{ $service->reviews->count() }})
+                All Reviews ({{ $service->reviews->count() }})
             </h5>
 
             @forelse($service->reviews as $review)

@@ -25,7 +25,7 @@
 
     <div class="alert alert-success mt-5 fade-in text-center alert-rounded-20">
         <strong>Want to Know More About Our Services?</strong><br>
-        Consult your needs directly through our WhatsApp using the button above.
+        Click "View More"
     </div>
 </div>
 @endsection

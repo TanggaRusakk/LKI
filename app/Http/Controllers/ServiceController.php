@@ -12,4 +12,16 @@ class ServiceController extends Controller
         $services = Service::all();
         return view('services', compact('services'));
     }
+
+    /**
+     * Display the specified service.
+     *
+     * @param  int  $id
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        $service = Service::with(['reviews.user'])->findOrFail($id);
+        return view('showservices', compact('service'));
+    }
 }

@@ -67,8 +67,9 @@ a:hover {
   transition: 0.25s ease;
 }
 
-  /* Safety: ensure desktop navbar links are always visible (prevent accidental hide by other rules) */
-  @media (min-width: 992px) {
+  /* Safety: ensure desktop navbar links are always visible (prevent accidental hide by other rules)
+    Move desktop threshold to >1000px so hamburger/mobile styles apply up to 1000px */
+  @media (min-width: 1001px) {
     .navbar .nav-link{ color: var(--cream) !important; opacity: 1 !important; visibility: visible !important }
     .navbar .nav-link .bi{ color: var(--cream) !important }
     .navbar .dropdown-menu .dropdown-item{ color: var(--text-dark) !important }
@@ -242,7 +243,7 @@ a:hover {
 }
 
 /* On large screens make the cards horizontal (row) */
-@media (min-width: 992px){
+@media (min-width: 1001px){
   .wood-grid{
     display:grid;
     grid-template-columns: repeat(3, 1fr);
@@ -370,8 +371,39 @@ a:hover {
 .image-preview-hidden{display:none}
 .img-fit-cover-180{height:180px; object-fit:cover}
 
+.card .row.g-0 { 
+  align-items: stretch;
+}
+
 /* Service / show page utilities */
-.page-hero-img-min500{min-height:500px}
+.page-hero-img-min500{
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  display: block;
+  object-fit: cover;
+}
+
+.card .row.g-0 > .col-md-6:first-child { 
+  padding: 0; 
+}
+
+.card .row.g-0 > .col-md-6:first-child img.page-hero-img-min500,
+.card .row.g-0 > .col-md-6:first-child img.object-fit-cover {
+  height: 100% !important;
+  width: 100% !important;
+  max-height: none !important;
+  display: block;
+  object-fit: cover !important;
+}
+
+/* Service title/description colors to match primary action (Back to Services) */
+.service-name{
+  color: var(--medium-brown);
+}
+.service-desc-title{
+  color: var(--medium-brown);
+}
 .gradient-text-blue{background: linear-gradient(135deg, #3b82f6, #1e3a8a); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent}
 .service-card-bg{background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(232,207,174,0.06));}
 .title-walnut{color:var(--medium-brown)}
@@ -425,6 +457,11 @@ a:hover {
 .review-card{transition: all 0.3s ease}
 .review-card:hover{transform: translateX(5px); box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important}
 
+/* Hide the inline "Showing ... results" that the default bootstrap-5 paginator prints
+  for paginators wrapped with .no-pagination-summary. This keeps our custom summary below
+  while removing the duplicate inline summary. */
+.no-pagination-summary nav .d-none .small.text-muted { display: none !important; }
+
 /* admin/users view helpers */
 .user-row{transition: all 0.3s ease}
 .user-row:hover{background-color:#f8f9fa; transform: scale(1.01)}
@@ -464,19 +501,16 @@ a:hover {
 .site-footer .footer-wood-img{max-width:320px; transform: rotate(-6deg) translateX(10px); filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));}
 
 /* Responsive tweaks */
-@media (max-width: 768px){
-  /* Stack footer columns but keep the links as a 2x2 grid for better navigation on mobile */
+@media (max-width: 1000px){
   .site-footer .footer-right{display:none}
   .site-footer .footer-left,
   .site-footer .footer-center{display:block; width:100%; text-align:center; margin-bottom:18px}
 
-  /* Keep links in two columns (2x2) on small screens and center the block */
   .site-footer .footer-links{grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px 12px; justify-items:center; max-width:360px; margin:0 auto}
   .site-footer .footer-links li{margin:6px 0}
 
   .site-footer .footer-desc{max-width:100%; margin-left:auto; margin-right:auto}
   .site-footer .footer-title{font-size:28px}
-  /* center logo and socials and reduce button size */
   .site-footer .footer-left .logo-link{justify-content:center}
   .site-footer .socials{ justify-content:center }
   .site-footer .social-btn{ width:44px; height:44px }
@@ -484,9 +518,7 @@ a:hover {
   .site-footer{padding:30px 16px}
 }
 
-/* Adjust hero overlap and variables on small screens */
-@media (max-width: 768px) {
-  /* keep navbar height consistent across breakpoints; only adjust hero min-height */
+@media (max-width: 1000px) {
   :root{ --hero-min-height: 50vh }
   .hero { margin-top: calc(-1 * var(--navbar-height)); padding: calc(110px + var(--navbar-height)) 16px 80px 16px; }
 
@@ -495,8 +527,6 @@ a:hover {
   .navbar-toggler{ border: none !important; background: transparent !important; width:44px; height:44px; padding:0; display:flex; align-items:center; justify-content:center }
   .navbar-toggler-icon{ background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='22' viewBox='0 0 30 22'><rect width='30' height='2' y='0' rx='1' fill='%23fff'/><rect width='30' height='2' y='10' rx='1' fill='%23fff'/><rect width='30' height='2' y='20' rx='1' fill='%23fff'/></svg>"); background-repeat:no-repeat; background-position:center; background-size:22px 16px; filter:none }
 
-  /* right-side slide panel (covers ~40% of viewport) with overlay on the left */
-  /* panel sizing uses a variable so overlay and panel align */
   :root{ --mobile-panel-width: 40vw }
   .navbar-collapse{
     position:fixed;
@@ -508,9 +538,8 @@ a:hover {
     max-width:420px;
     min-width:260px;
     display:none;
-  /* mobile panel uses the dark brown/medium brown palette */
   background: linear-gradient(180deg, var(--dark-brown), var(--medium-brown));
-  border-left: 0.2px solid rgba(255,255,255,0.03); /* thin brighter edge */
+  border-left: 0.2px solid rgba(255,255,255,0.03); 
     border-radius:0;
     box-shadow:-12px 0 40px rgba(0,0,0,0.25);
     padding-top:28px;
@@ -531,9 +560,9 @@ a:hover {
   }
   .navbar-collapse.show{ display:flex }
   .mobile-panel{ width:100%; display:flex; flex-direction:column; align-items:flex-start; gap:18px; padding:16px 20px }
+  
   /* close X at top-right of panel */
   .mobile-close{ position:absolute; top:12px; right:12px; transform:none; font-size:26px; color:#fff; background:transparent; border:none; line-height:1 }
-  /* move auth buttons slightly upward (closer to top) */
   .auth-actions{ width:100%; display:flex; justify-content:center; gap:12px; margin:4px 0 6px }
   .btn-sign{ border-radius:28px; border:2px solid rgba(255,255,255,0.9); color:#fff; padding:10px 20px; background:transparent }
   .mobile-panel .navbar-nav{ width:100%; display:flex; flex-direction:column; gap:0 }
@@ -544,7 +573,6 @@ a:hover {
 
 @media (max-width: 480px){
   :root{ --hero-min-height: 45vh }
-  /* Tighter footer layout on very small screens, keep 2x2 links */
   .site-footer .footer-title{font-size:22px}
   .site-footer .footer-links{grid-template-columns: repeat(2, minmax(0,1fr)); max-width:300px}
   .site-footer .footer-links a{font-size:1rem}
@@ -667,8 +695,7 @@ a:hover {
 }
 
 /* ===== Mobile Panel Enhancements ===== */
-@media (max-width: 991.98px) {
-  /* Mobile panel styling */
+@media (max-width: 1000px) {
   .mobile-panel {
     position: fixed;
     top: 0;
@@ -796,7 +823,7 @@ a:hover {
 }
 
 /* Tablet landscape adjustments */
-@media (min-width: 768px) and (max-width: 991.98px) {
+  @media (min-width: 768px) and (max-width: 1000px) {
   .mobile-panel {
     width: 70%;
     max-width: 380px;
