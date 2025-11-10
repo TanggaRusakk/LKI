@@ -128,19 +128,19 @@
                         <li><a class="dropdown-item {{ !request('rating') ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id]) }}">All Ratings</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item {{ request('rating') == '5' ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id, 'rating' => 5]) }}">
-                            <i class="fas fa-star text-warning"></i> 5 Stars
+                            5 Stars
                         </a></li>
                         <li><a class="dropdown-item {{ request('rating') == '4' ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id, 'rating' => 4]) }}">
-                            <i class="fas fa-star text-warning"></i> 4 Stars
+                            4 Stars
                         </a></li>
                         <li><a class="dropdown-item {{ request('rating') == '3' ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id, 'rating' => 3]) }}">
-                            <i class="fas fa-star text-warning"></i> 3 Stars
+                            3 Stars
                         </a></li>
                         <li><a class="dropdown-item {{ request('rating') == '2' ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id, 'rating' => 2]) }}">
-                            <i class="fas fa-star text-warning"></i> 2 Stars
+                            2 Stars
                         </a></li>
                         <li><a class="dropdown-item {{ request('rating') == '1' ? 'active' : '' }}" href="{{ route('services.show', ['id' => $service->id, 'rating' => 1]) }}">
-                            <i class="fas fa-star text-warning"></i> 1 Star
+                            1 Star
                         </a></li>
                     </ul>
                 </div>
