@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card shadow-lg border-0 card-rounded-20">
                 <div class="card-header text-white py-4 navbar-custom">
-                    <h3 class="mb-0 fw-bold"><i class="fas fa-plus-circle me-2"></i>Add New Service</h3>
+                    <h3 class="mb-0 fw-bold">Add New Service</h3>
                 </div>
                 <div class="card-body p-5">
                     @if ($errors->any())
