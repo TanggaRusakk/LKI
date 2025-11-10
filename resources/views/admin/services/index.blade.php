@@ -46,8 +46,7 @@
                                 <span class="badge bg-info">{{ $service->reviews()->count() }} reviews</span>
                             </td>
                             <td>
-                                <div class="btn-group btn-group-sm">
-                                    <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-outline-primary" title="Edit">
+                                    <a href="{{ route('admin.services.edit', $service) }}" class="btn btn-outline-primary me-1" title="Edit">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <form action="{{ route('admin.services.destroy', $service) }}" method="POST" class="d-inline"
@@ -58,7 +57,6 @@
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
-                                </div>
                             </td>
                         </tr>
                         @empty

@@ -33,12 +33,19 @@ class WoodController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'origin' => 'required|in:local,imported',
+            'origin' => 'required|in:Indonesia,other',
+            'other_origin' => 'nullable|required_if:origin,other|string|max:255',
             'description' => 'required|string',
             'characteristics' => 'required|string',
             'uses' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        // Handle origin: if 'other', use the specified other_origin
+        if ($validated['origin'] === 'other') {
+            $validated['origin'] = $validated['other_origin'];
+            unset($validated['other_origin']);
+        }
 
         // Handle image upload
         if ($request->hasFile('image')) {
@@ -76,12 +83,19 @@ class WoodController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'origin' => 'required|in:local,imported',
+            'origin' => 'required|in:Indonesia,other',
+            'other_origin' => 'nullable|required_if:origin,other|string|max:255',
             'description' => 'required|string',
             'characteristics' => 'required|string',
             'uses' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        // Handle origin: if 'other', use the specified other_origin
+        if ($validated['origin'] === 'other') {
+            $validated['origin'] = $validated['other_origin'];
+            unset($validated['other_origin']);
+        }
 
         // Handle image upload if new image provided
         if ($request->hasFile('image')) {

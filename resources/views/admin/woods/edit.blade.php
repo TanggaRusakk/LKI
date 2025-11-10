@@ -31,13 +31,32 @@
                         </div>
 
                         <div class="mb-4">
-                            <label for="origin" class="form-label fw-semibold">Origin <span class="text-danger">*</span></label>
-                            <select class="form-select form-select-lg @error('origin') is-invalid @enderror" 
-                                    id="origin" name="origin" required>
-                                <option value="">Select origin</option>
-                                <option value="local" {{ old('origin', $wood->origin) == 'local' ? 'selected' : '' }}>Local</option>
-                                <option value="imported" {{ old('origin', $wood->origin) == 'imported' ? 'selected' : '' }}>Imported</option>
-                            </select>
+                            <label class="form-label fw-semibold">Origin <span class="text-danger">*</span></label>
+                            <div class="form-check">
+                                <input class="form-check-input @error('origin') is-invalid @enderror" 
+                                       type="radio" name="origin" id="indonesia" value="Indonesia" 
+                                       {{ (old('origin', $wood->origin) == 'Indonesia') ? 'checked' : '' }} 
+                                       onchange="document.getElementById('otherOriginDiv').style.display='none'; document.getElementById('other_origin').required=false; document.getElementById('other_origin').value='';">
+                                <label class="form-check-label" for="indonesia">
+                                    Indonesia
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input @error('origin') is-invalid @enderror" 
+                                       type="radio" name="origin" id="other" value="other" 
+                                       {{ (old('origin', $wood->origin) != 'Indonesia') ? 'checked' : '' }} 
+                                       onchange="document.getElementById('otherOriginDiv').style.display='block'; document.getElementById('other_origin').required=true;">
+                                <label class="form-check-label" for="other">
+                                    Other
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="mb-4" id="otherOriginDiv" style="display: {{ (old('origin', $wood->origin) != 'Indonesia') ? 'block' : 'none' }};">
+                            <label for="other_origin" class="form-label fw-semibold">Specify Other Origin <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control form-control-lg @error('other_origin') is-invalid @enderror" 
+                                   id="other_origin" name="other_origin" value="{{ old('other_origin', ($wood->origin != 'Indonesia' ? $wood->origin : '')) }}" 
+                                   placeholder="e.g., Malaysia">
                         </div>
 
                         <div class="mb-4">
@@ -105,6 +124,21 @@ function previewImage(event) {
         reader.readAsDataURL(file);
     }
 }
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const otherRadio = document.getElementById('other');
+    const otherOriginInput = document.getElementById('other_origin');
+    const otherOriginDiv = document.getElementById('otherOriginDiv');
+    
+    if (otherRadio.checked) {
+        otherOriginDiv.style.display = 'block';
+        otherOriginInput.required = true;
+    } else {
+        otherOriginDiv.style.display = 'none';
+        otherOriginInput.required = false;
+    }
+});
 </script>
 
 <!-- view-level styles moved to public/style/styles.css -->

@@ -41,9 +41,8 @@ class WoodController extends Controller
         return view('woods', compact('localWoods', 'importWoods'));
     }
     
-    public function show($id)
+    public function show(Wood $wood)
     {
-        $wood = Wood::findOrFail($id);
         return view('showwoods', compact('wood'));
     }
 }

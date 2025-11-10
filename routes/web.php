@@ -13,7 +13,7 @@ Route::get('/woods', [WoodController::class, 'index'])->name('woods');
 Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
 Route::get('/services/{id}', [ServiceController::class, 'show'])->name('services.show');
 Route::get('/contacts', function () { return view('contacts'); })->name('contacts');
-Route::get('/woods/{id}', [WoodController::class, 'show'])->name('woods.show');
+Route::get('/woods/{wood}', [WoodController::class, 'show'])->name('woods.show');
 
 // Breeze Dashboard (after login)
 Route::get('/dashboard', function () {

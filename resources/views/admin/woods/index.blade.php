@@ -46,8 +46,7 @@
                             </td>
                             <td>{{ Str::limit($wood->description, 100) }}</td>
                             <td>
-                                <div class="btn-group btn-group-sm">
-                                    <a href="{{ route('admin.woods.edit', $wood) }}" class="btn btn-outline-primary" title="Edit">
+                                    <a href="{{ route('admin.woods.edit', $wood) }}" class="btn btn-outline-primary me-1" title="Edit">
                                         <i class="bi bi-pencil"></i>
                                     </a>
                                     <form action="{{ route('admin.woods.destroy', $wood) }}" method="POST" class="d-inline"
@@ -58,7 +57,6 @@
                                             <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
-                                </div>
                             </td>
                         </tr>
                         @empty
