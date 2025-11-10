@@ -218,4 +218,54 @@
         </div>
     </div>
 </div>
+
+<script>
+// Interactive Rating Stars
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.star-icon');
+    const ratingInput = document.getElementById('rating-input');
+    const ratingText = document.getElementById('rating-text');
+    
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            ratingInput.value = rating;
+            ratingText.textContent = rating + '/5';
+            updateStars(rating);
+        });
+        
+        // Hover effect
+        star.addEventListener('mouseenter', function() {
+            const rating = parseInt(this.getAttribute('data-rating'));
+            updateStars(rating);
+        });
+    });
+    
+    // Reset to selected rating on mouse leave
+    const ratingContainer = document.querySelector('.interactive-rating-stars');
+    ratingContainer.addEventListener('mouseleave', function() {
+        const currentRating = parseInt(ratingInput.value);
+        updateStars(currentRating);
+    });
+    
+    function updateStars(rating) {
+        stars.forEach(star => {
+            const starRating = parseInt(star.getAttribute('data-rating'));
+            const filledStar = star.querySelector('.star-filled');
+            const emptyStar = star.querySelector('.star-empty');
+            
+            if (starRating <= rating) {
+                filledStar.style.display = 'inline-block';
+                emptyStar.style.display = 'none';
+            } else {
+                filledStar.style.display = 'none';
+                emptyStar.style.display = 'inline-block';
+            }
+        });
+    }
+    
+    // Initialize with default rating
+    updateStars(5);
+});
+</script>
 @endsection
