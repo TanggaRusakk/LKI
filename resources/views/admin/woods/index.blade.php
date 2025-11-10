@@ -40,7 +40,7 @@
                             </td>
                             <td class="fw-semibold">{{ $wood->name }}</td>
                             <td>
-                                <span class="badge {{ $wood->origin == 'local' ? 'bg-success' : 'bg-info' }}">
+                                <span class="badge {{ $wood->origin == 'Indonesia' ? 'bg-success' : 'bg-info' }}">
                                     {{ ucfirst($wood->origin) }}
                                 </span>
                             </td>
