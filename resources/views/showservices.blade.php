@@ -38,7 +38,7 @@
 
                 <div class="d-flex gap-2">
                     <a href="https://wa.me/628123235655?text=Halo%20saya%20ingin%20konsultasi%20tentang%20layanan%20{{ urlencode($service->name) }}" 
-                        class="btn btn-success btn-lg flex-grow-1 py-3 fw-semibold btn-radius-15">
+                        class="btn btn-success btn-lg flex-grow-1 py-3 fw-semibold btn-radius-15"; target="_blank">
                         Consult via WhatsApp
                     </a>
                 </div>
