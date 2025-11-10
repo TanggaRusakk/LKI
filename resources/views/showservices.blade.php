@@ -51,15 +51,15 @@
 
     <!-- Reviews Section -->
     <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
-        <div class="card-header text-white py-4 card-header-gradient-warning">
-            <h3 class="mb-0 fw-bold"><i class="fas fa-star me-2"></i>Customer Reviews</h3>
+        <div class="card-header text-white py-4 navbar-custom">
+            <h3 class="mb-0 fw-bold">Customer Reviews</h3>
         </div>
         <div class="card-body p-4">
             @auth
                 @if(!Auth::user()->isAdmin())
                     <div class="card shadow-sm mb-4 card-rounded-15 review-input-bg">
                         <div class="card-body p-4">
-                            <h5 class="fw-bold mb-3"><i class="fas fa-pen me-2"></i>Write a Review</h5>
+                            <h5 class="fw-bold mb-3">Write a Review</h5>
                             <form method="POST" action="{{ route('reviews.store') }}">
                                 @csrf
                                 <input type="hidden" name="service_id" value="{{ $service->id }}">
@@ -147,17 +147,17 @@
             </div>
 
             @forelse(isset($reviews) ? $reviews : $service->reviews as $review)
-                <div class="review-card p-4 mb-3 shadow-sm border-0" style="border-left: 4px solid {{ $loop->iteration % 2 == 1 ? '#8B5A2B' : '#4A6B3C' }} !important;">
+                <div class="review-card p-4 mb-3 shadow-sm border-0" style="border-left: 4px solid {{ $loop->iteration % 2 == 1 ? 'var(--medium-brown)' : 'var(--dark-brown)' }} !important;">
                     <div class="d-flex justify-content-between align-items-start mb-3">
                         <div class="d-flex align-items-center">
                             <div class="user-avatar me-3">
                                 <img src="{{ $review->user->photo_url }}" 
                                      alt="{{ $review->user->name }}" 
                                      class="rounded-circle"
-                                     style="width: 50px; height: 50px; object-fit: cover; border: 3px solid {{ $loop->iteration % 2 == 1 ? '#8B5A2B' : '#4A6B3C' }};">
+                                     style="width: 50px; height: 50px; object-fit: cover; border: 3px solid {{ $loop->iteration % 2 == 1 ? 'var(--medium-brown)' : 'var(--dark-brown)' }};">
                             </div>
                             <div>
-                                <h6 class="fw-bold mb-1" style="color: {{ $loop->iteration % 2 == 1 ? '#5C4033' : '#4A6B3C' }};">{{ $review->user->name }}</h6>
+                                <h6 class="fw-bold mb-1" style="color: {{ $loop->iteration % 2 == 1 ? 'var(--dark-brown)' : 'var(--forest-green)' }};">{{ $review->user->name }}</h6>
                                 <div class="mb-1">
                                     @for($i = 1; $i <= 5; $i++)
                                         @if($i <= $review->rating)
