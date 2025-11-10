@@ -79,11 +79,11 @@
                             <td>
                                 @if($user->role === 'admin')
                                     <span class="badge bg-warning text-dark">
-                                        <i class="bi bi-shield-fill-check me-1"></i>Admin
+                                        Admin
                                     </span>
                                 @else
                                     <span class="badge bg-info">
-                                        <i class="bi bi-person-fill me-1"></i>User
+                                        User
                                     </span>
                                 @endif
                             </td>

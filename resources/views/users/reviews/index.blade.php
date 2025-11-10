@@ -15,7 +15,6 @@
                         <p class="text-muted mb-0 small">{{ Auth::user()->name }}</p>
                     </div>
                 </div>
-                {{-- Removed "Add New Review" button - reviews can only be created from service pages --}}
             </div>
 
             @if (session('success'))

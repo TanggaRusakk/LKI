@@ -40,13 +40,11 @@
                                 </div>
                                 <input type="file" id="photo" name="photo" accept="image/*" class="d-none" onchange="previewPhoto(event)">
                                 
-                                <!-- Button alternatif yang lebih visible -->
                                 <div class="d-flex flex-column gap-2 mb-2">
                                     <label for="photo" class="btn btn-sm text-white" style="background: linear-gradient(135deg, #5C4033 0%, #8B5A2B 100%); border: none;">
                                         <i class="bi bi-upload me-1"></i> Change Photo
                                     </label>
 
-                                    <!-- Always show delete button; JS will prevent action if there's no custom photo -->
                                     <button id="delete-photo-btn" type="button" class="btn btn-sm btn-danger" data-has-photo="{{ Auth::user()->photo ? '1' : '0' }}" onclick="confirmDeletePhoto()">
                                         <i class="bi bi-trash me-1"></i> Delete Photo
                                     </button>
@@ -220,7 +218,6 @@
 </form>
 
 <style>
-/* Hover effect untuk camera button */
 .camera-btn {
     transition: all 0.3s ease;
 }
@@ -264,7 +261,6 @@ function previewPhoto(event) {
 }
 
 function confirmDeletePhoto() {
-    // Check whether the user actually has a custom photo
     const btn = document.getElementById('delete-photo-btn');
     const hasPhoto = btn ? btn.dataset.hasPhoto === '1' : false;
 
