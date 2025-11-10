@@ -8,9 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    {{-- collapse: desktop links (lg+) + mobile panel (sm/md) --}}
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      {{-- Desktop nav (visible on lg and up) --}}
       <ul class="navbar-nav align-items-center d-none d-lg-flex">
         <li class="nav-item"><a class="nav-link text-light" href="{{ url('/') }}">Home</a></li>
         <li class="nav-item"><a class="nav-link text-light" href="{{ url('/woods') }}">Wood</a></li>
@@ -18,7 +16,6 @@
         <li class="nav-item"><a class="nav-link text-light" href="{{ url('/contacts') }}">Contact</a></li>
         
         @auth
-          {{-- User is logged in - Show profile dropdown --}}
           <li class="nav-item dropdown ms-3">
             <a class="nav-link dropdown-toggle text-light d-flex align-items-center" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="{{ Auth::user()->photo_url }}" alt="Profile" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover; border: 2px solid #fff;">
@@ -42,7 +39,6 @@
             </ul>
           </li>
         @else
-          {{-- User is not logged in - Show login/signup buttons --}}
           <li class="nav-item ms-3">
             <a href="{{ url('/login') }}" class="btn btn-outline-light btn-sm me-2">Sign in</a>
           </li>
@@ -52,13 +48,10 @@
         @endauth
       </ul>
 
-      {{-- Mobile panel for small screens --}}
       <div class="mobile-panel d-lg-none">
-        {{-- center close X (also keep toggler available at top-right) --}}
         <button class="mobile-close d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Close">&times;</button>
 
         @auth
-          {{-- Mobile: Show user menu when logged in --}}
           <div class="user-mobile-menu mb-4">
             <div class="d-flex align-items-center justify-content-center mb-3">
               <img src="{{ Auth::user()->photo_url }}" alt="Profile" class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover; border: 3px solid #fff;">
@@ -86,7 +79,6 @@
             </div>
           </div>
         @else
-          {{-- Mobile: Show login/signup when not logged in --}}
           <div class="auth-actions mb-4">
             <a href="{{ url('/login') }}" class="btn btn-outline-light btn-sign w-100 mb-2">Sign in</a>
             <a href="{{ url('/register') }}" class="btn btn-outline-light btn-sign w-100">Sign up</a>
